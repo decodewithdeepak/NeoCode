@@ -1,6 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Clock, User, Tag } from 'lucide-react';
+import { Clock, User } from 'lucide-react';
 
 const blogPosts = [
   {

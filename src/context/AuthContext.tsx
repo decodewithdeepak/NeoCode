@@ -1,33 +1,20 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { initializeApp } from 'firebase/app';
 import {
-  getAuth,
   onAuthStateChanged,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
+  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   signOut,
   User
 } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+import { auth, googleProvider } from '../config/firebase';
 
 interface AuthContextType {
   user: User | null;
   loading: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  signup: (email: string, password: string) => Promise<void>;
+  loginWithGoogle: () => Promise<void>;
   logout: () => Promise<void>;
 }
 
@@ -44,27 +31,44 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setLoading(false);
     });
 
+    // Check for redirect result
+    getRedirectResult(auth)
+      .then((result) => {
+        if (result?.user) {
+          toast.success('Welcome to NeoCode!');
+          navigate('/dashboard');
+        }
+      })
+      .catch((error) => {
+        if (error.code !== 'auth/popup-blocked') {
+          toast.error('Authentication failed. Please try again.');
+        }
+      });
+
     return unsubscribe;
-  }, []);
+  }, [navigate]);
 
-  const login = async (email: string, password: string) => {
+  const loginWithGoogle = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      toast.success('Welcome back!');
-      navigate('/dashboard');
-    } catch (error) {
-      toast.error('Invalid email or password');
-      throw error;
-    }
-  };
-
-  const signup = async (email: string, password: string) => {
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      toast.success('Account created successfully!');
-      navigate('/dashboard');
-    } catch (error) {
-      toast.error('Failed to create account');
+      // First try popup
+      try {
+        const result = await signInWithPopup(auth, googleProvider);
+        if (result.user) {
+          toast.success('Welcome to NeoCode!');
+          navigate('/dashboard');
+        }
+      } catch (popupError: any) {
+        // If popup is blocked, fall back to redirect
+        if (popupError.code === 'auth/popup-blocked') {
+          toast.loading('Redirecting to Google Sign In...');
+          await signInWithRedirect(auth, googleProvider);
+        } else {
+          throw popupError;
+        }
+      }
+    } catch (error: any) {
+      console.error('Google Sign In Error:', error);
+      toast.error(error.message || 'Failed to sign in with Google');
       throw error;
     }
   };
@@ -81,7 +85,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, signup, logout }}>
+    <AuthContext.Provider value={{ user, loading, loginWithGoogle, logout }}>
       {!loading && children}
     </AuthContext.Provider>
   );

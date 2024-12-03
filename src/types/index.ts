@@ -3,16 +3,16 @@ export interface Problem {
   title: string;
   difficulty: 'Easy' | 'Medium' | 'Hard';
   platform: 'LeetCode' | 'GeeksforGeeks' | 'HackerRank';
-  category: string;
   link: string;
   completed?: boolean;
   notes?: string;
 }
 
-export interface Category {
+export interface Topic {
   id: string;
-  name: string;
-  description: string;
-  problemCount: number;
-  completedCount: number;
+  title: string;
+  description?: string;
+  problems: Problem[];
+  totalProblems: number;
+  completedProblems: number;
 }

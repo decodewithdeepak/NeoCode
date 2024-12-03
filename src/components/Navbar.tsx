@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
+import { useAuth } from '../context/AuthContext';
 import { Moon, Sun, Code2, Menu, X } from 'lucide-react';
+import UserMenu from './UserMenu';
 
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
+  const { user } = useAuth();
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
@@ -30,12 +33,16 @@ export default function Navbar() {
             >
               {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </button>
-            <Link
-              to="/login"
-              className="px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
-            >
-              Login
-            </Link>
+            {user ? (
+              <UserMenu />
+            ) : (
+              <Link
+                to="/login"
+                className="px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
+              >
+                Login
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -88,13 +95,19 @@ export default function Navbar() {
             >
               About
             </Link>
-            <Link
-              to="/login"
-              className="block px-3 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700"
-              onClick={() => setIsOpen(false)}
-            >
-              Login
-            </Link>
+            {user ? (
+              <div className="px-3 py-2">
+                <UserMenu />
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                className="block px-3 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700"
+                onClick={() => setIsOpen(false)}
+              >
+                Login
+              </Link>
+            )}
           </div>
         </div>
       )}
