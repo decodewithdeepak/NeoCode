@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Code2 } from 'lucide-react';
 
@@ -11,7 +11,7 @@ export default function Login() {
     try {
       await loginWithGoogle();
     } catch (error) {
-      // Error handling is now done in AuthContext
+      // Error handling is done in AuthContext
     } finally {
       setIsLoading(false);
     }

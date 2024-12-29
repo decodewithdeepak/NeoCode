@@ -8,7 +8,7 @@ import Sheet from './pages/Sheet';
 import Dashboard from './pages/Dashboard';
 import Blog from './pages/Blog';
 import Login from './pages/Login';
-import Signup from './pages/Signup';
+import About from './pages/About';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
 
@@ -26,7 +26,7 @@ function App() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Signup />} />
+                <Route path="/about" element={<About />} />
               </Routes>
             </main>
             <Footer />
