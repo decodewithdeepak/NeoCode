@@ -80,10 +80,10 @@ export default function HeroSection() {
                 className="rounded-2xl transform group-hover:scale-[1.02] transition-transform duration-500"
               />
               {/* Floating Elements */}
-              <div className="absolute -right-6 -top-0 w-24 h-24 bg-gradient-to-r from-purple-300 to-purple-500 dark:from-purple-600 dark:to-purple-800 rounded-full rotate-12" />
-              <div className="absolute -left-6 -bottom-6 w-20 h-20 bg-gradient-to-r from-indigo-300 to-indigo-500 dark:from-indigo-600 dark:to-indigo-800 rounded-full -rotate-12" />
-              <div className="absolute -right-12 bottom-12 w-24 h-24 bg-gradient-to-r from-yellow-200 to-yellow-400 dark:from-yellow-500 dark:to-yellow-700 rounded-full rotate-45" />
-              <div className="absolute top-16 -left-8 w-24 h-24 bg-gradient-to-r from-teal-200 to-teal-400 dark:from-teal-500 dark:to-teal-700 rounded-full -rotate-45" />
+              <div className="absolute top-0 left-0 w-24 h-24 bg-gradient-to-r from-teal-200 to-teal-400 dark:from-teal-500 dark:to-teal-700 rounded-full -rotate-45" />
+              <div className="absolute right-4 top-4 w-20 h-20 bg-gradient-to-r from-purple-300 to-purple-500 dark:from-purple-600 dark:to-purple-800 rounded-full rotate-12" />
+              <div className="absolute left-4 bottom-4 w-20 h-20 bg-gradient-to-r from-indigo-300 to-indigo-500 dark:from-indigo-600 dark:to-indigo-800 rounded-full -rotate-12" />
+              <div className="absolute right-0 bottom-0 w-24 h-24 bg-gradient-to-r from-yellow-200 to-yellow-400 dark:from-yellow-500 dark:to-yellow-700 rounded-full rotate-45" />
             </div>
           </div>
         </div>
