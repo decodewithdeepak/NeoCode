@@ -3,21 +3,17 @@ import HeroSection from '../components/home/HeroSection';
 import StatsSection from '../components/home/StatsSection';
 import FeaturesSection from '../components/home/FeaturesSection';
 import TestimonialCarousel from '../components/home/TestimonialCarousel';
+import CreatorSection from '../components/home/CreatorSection';
 import { testimonials } from '../data/testimonials';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
     <div className="overflow-hidden">
-      {/* Hero Section */}
       <HeroSection />
-
-      {/* Stats Section */}
       <StatsSection />
-
-      {/* Features Section */}
       <FeaturesSection />
-
+      
       {/* Testimonials Section */}
       <section className="py-20 bg-gradient-to-b from-transparent to-gray-50 dark:to-gray-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,6 +28,9 @@ export default function Home() {
           <TestimonialCarousel testimonials={testimonials} />
         </div>
       </section>
+
+      {/* Creator Section */}
+      <CreatorSection />
 
       {/* Call-To-Action (CTA) Section */}
       <section className="py-20">

@@ -11,7 +11,7 @@ export const testimonials = [
     author: "Diya Patel",
     role: "Senior Developer at Microsoft",
     avatar: "https://randomuser.me/api/portraits/women/44.jpg", // Indian female avatar
-    rating: 5
+    rating: 4
   },
   {
     content: "As a self-taught developer, NeoCode was instrumental in building my algorithmic thinking. The platform's approach is both comprehensive and practical.",
@@ -25,7 +25,7 @@ export const testimonials = [
     author: "Ishita Mehta",
     role: "Software Engineer at Netflix",
     avatar: "https://randomuser.me/api/portraits/women/46.jpg", // Indian female avatar
-    rating: 5
+    rating: 4
   },
   {
     content: "NeoCode's problem-solving approach helped me develop a strong foundation in algorithms. The progress tracking feature is incredibly motivating.",
@@ -39,6 +39,6 @@ export const testimonials = [
     author: "Ananya Singh",
     role: "Software Engineer at Meta",
     avatar: "https://randomuser.me/api/portraits/women/47.jpg", // Indian female avatar
-    rating: 5
+    rating: 4
   }
 ];
