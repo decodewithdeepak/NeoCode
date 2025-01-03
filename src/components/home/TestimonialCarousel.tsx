@@ -56,7 +56,7 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
 
   // Auto-slide effect
   useEffect(() => {
-    const timer = setInterval(() => handleNext(), 5000); // Auto slide every 5 seconds
+    const timer = setInterval(() => handleNext(), 3000); // Auto slide every 3 seconds
     return () => clearInterval(timer);
   }, []);
 
